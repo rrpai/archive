@@ -1,7 +1,7 @@
 "use strict";
 
-let Crawler = require('./Crawler.js');
+let Worker = require('./Worker.js');
 
-let crawler1 = new Crawler('Test1');
+let worker = new Worker('Test1');
 
-crawler1.crawl();
+worker.work();
