@@ -1,0 +1,10 @@
+http://www.thegeekstuff.com/2010/08/ar-command-examples/
+
+http://www.thegeekstuff.com/2012/06/linux-shared-libraries/
+
+
+http://www.cprogramming.com/compilingandlinking.html
+
+http://www.lurklurk.org/linkers/linkers.html
+
+
