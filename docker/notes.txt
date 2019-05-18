@@ -1,0 +1,13 @@
+docker pull alpine
+
+docker container ls -l
+
+docker container run hello-world
+
+docker container run alpine
+
+docker run -it alpine /bin/sh
+
+# mount host volume
+docker run -it -v d:/ratheesh/tmp/docker-test:/mydata alpine /bin/sh
+--------------------------------------------------------------------------------------------------------

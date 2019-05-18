@@ -1,0 +1,224 @@
+File  -> Modified file -> Stage -> commit
+initialise repository to current directory
+git  init
+.gitignore : list of all files which should be ignored by git
+for common gitignore files look in github gitignore project
+
+
+Workflow - Fixing a bug
+
+by default you are on branch  ‘master’
+A bug comes up
+You create a branch 
+git branch bug51
+git checkout bug51
+  or
+git checkout -b bug51
+
+modify files. git automatically detects them as changed / dirty
+when ready to commit changes
+git add file.txt             # add file to index / staging
+git commit  file.txt
+   or
+# commit all changed files
+git  commit -a 
+
+Unstage a file : if you want to discard changes after stage
+After this it is unstaged, but in modified state.  
+git reset file.txt
+To remove the modifications also give below cmd
+git checkout -- file.txt
+Remove a file
+git rm file.txt
+
+When you are ready to merge changes of bug to master
+git checkout master
+git merge bug51
+
+In github before merging the branch you need to do a ‘pull request’  and once it is approved you will be able to merge
+
+Now you can delete branch bug51 as it is merged to master
+git branch -d bug51
+
+Note:  In between if you want to fix another bug, you can switch to that branch and work
+git checkout bug62
+
+Rebase
+
+Say you are working on a branch for some time. Master would’ve changed by now. You may be working in old version of a file. If you want to refresh to latest ‘master’ use rebase
+
+git checkout featureBranch
+git rebase master
+
+[ Git rebase -> ‘refreshview' ]
+- Say you are working on a bug/feature branch for some time.
+- Commits are happening in master in parallel
+- You may be working in old version of a file
+- You would want to work with your changes on top of master version of the files.
+- Obviously, you dont want to resolve conflicts till the very end of merge. You would want to periodically 'refresh' from master and keep testing if your changes are fine .   
+
+- Use Git Rebase which does what 'ade refreshview' does.
+
+# i suggest use IDE/GUI tool for this, else resolving diffs would be a problem in default editor (vi)
+git checkout featureBranch
+git rebase master
+
+- In Intellij Idea, while you are on the branch, click "Branch name - Rebase on to master"
+
+- Git will replay your commits on top of latest master
+- You may have to resolve merge diffs
+
+PS:
+  - Other advantages I see are below
+  - If you dont do this and do final merge commit, then git log becomes non-linear , ie your commits are interspersed with master commits
+  # M - master commit, C - your commits
+  M1 C1 M2 C2 C3 M3 C4 [Merge Commit]
+  - In GUI you will see a parallel line to master. With many developers you may see many parallel lines criss-crossing and merging , which may be confusing.
+  - If you rebase, history will be linear , like what 'ade tkvtree' shows
+
+
+git rebase can be used to squash commits
+
+git rebase -i HEAD ~7
+
+In Intellij, start rebase using this menu
+Git -> repository -> rebase
+
+Now squash window will appear
+
+
+
+Remote Repositories
+
+
+configure remote repo
+git remote add origin https://github.com/rrpai/Test.git  
+
+ Lists all remotes and their URLs
+git remote -v 
+
+pull remote repo
+git pull  http://github.com/rrpai/Test.git
+
+refresh your current branch from a specific remote branch, such as master:
+before pulling/merging, first commit your work!
+pulls from origin/master branch into your current branch (rather than the default tracking branch)
+git pull origin master
+
+clone repo
+git clone http://github.com/rrpai/Test.git
+
+push change to remote repo
+git push origin <branch name>
+
+
+Delete merged  branch
+git branch -d bug100
+delete unmerged branch
+git branch -D bug101
+
+clean untracked files
+git clean 
+clean untracked files #2
+git clean -f
+clean untracked dirs
+git clean -d
+clean untracked dirs/files
+git clean -df
+show which files/dirs will be cleaned
+git clean -n -df
+
+
+ revert a commit
+git revert HEAD
+
+
+Tags
+
+used to tag a commit with a name/description
+used to tag releases etc
+
+tag currently active HEAD 
+git tag release2.1 -m “Release 2.1”
+
+Stash
+assume that you are working on a branch and half way through the feature
+now say you have to work on another branch for a urgent issue
+if you switch branch now, Git will bring forward all uncommited/staged files to new branch. This can be surprising to see those in switched branch. So you have to commit or stash changes first before switching branches
+If you commit your changes now, while it is possible,  it will not be in a logical checkpoint 
+so you stash your changes  in a stack
+git stash
+now you can work on other branches
+to get stashed changes back  (pops last stash)
+git stash pop              
+ or
+git stash apply
+git stash apply  <stash name>
+
+
+
+Remotes
+
+Git uses 'remotes' as aliases to track remote repositories. Remotes are especially useful when you work with multiple remote repositories.
+The special remote named 'origin' refers to to the remote repository you originally cloned from.
+
+# list remotes, and their URLs:
+git remote -v
+
+# show more details about 'origin' remote
+git remote show origin
+
+Conventions:
+Syntax convention: <remote>/<branchname> - for example, origin/master
+By convention, 'master' refers to the main branch.
+
+Remote Tracking Branches
+
+Remote tracking branches are special read-only local branches all starting with the remote name, such as origin/master.
+These are basically pointers to various commits in your repository, showing the sync state of the server branches.
+
+As you do git fetch or git pull, your remote tracking branch(es) are updated. You can use the git fetch feature to sync from the server and then diff your local branch state with the server branch state. (without doing a merge!)
+
+Git fetch updates the remote tracking branches but does not merge. You can always merge later.
+Git pull updates the remote tracking branches and also puts you into a merge.
+
+Tracking Branch Metadata
+
+Git uses a 'tracking branch' concept to let you define a default source branch for fetches, pulls and pushes.
+
+While not strictly required, if you have a tracking branch setup, then you can use 'git fetch', 'git pull' and 'git push' with out having to specify the remote and branch.  This is both easier and safer.
+
+### to display your current tracking branch:  (if any)
+
+# look at the line with the * (your current branch), and look for the bit between the [] brackets
+# in this case, someBranch has a tracking branch of origin/someBranch, but foobar has no tracking branch.
+git branch -vv
+
+#  foobar      344ac45 Quickstart script update for OEL6 support
+#  master      344ac45 [origin/master] Quickstart script update for OEL6 support
+#* someBranch  0e59410 [origin/someBranch] fixed bug123456
+
+
+
+Squashing
+
+http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html
+
+you can combine several smaller commits to one
+git  rebase -i HEAD~4
+pick oldest commit
+squash newer commits
+Combine commit messages in next screen
+
+Get all files changed in a branch
+
+git diff --name-only master bug1
+
+
+Git Tutorial ppt 
+
+https://www.slideshare.net/ThomasRausch4/git-introduction-tutorial?qid=644d729a-1507-4d27-affc-15e7360081df&v=&b=&from_search=7
+
+
+--------------------------------------------------------------------------------------------------------
+
