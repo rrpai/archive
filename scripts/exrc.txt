@@ -1,0 +1,82 @@
+" vi/vim config file
+
+“ ignore case while search
+set ignorecase
+
+" close window
+noremap <C-W> :q!<CR>
+inoremap <C-W> <esc>:q!<CR>
+vnoremap <C-W> <esc>:q!<CR>
+
+" undo
+noremap <C-Z> :u<CR><Ins>
+inoremap <C-Z> <Esc>:u<CR><Ins>
+
+" first remap terminal ctrl-s using stty stop \^_ (ctrl+_) in .cshrc file
+noremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR><Ins>
+vnoremap <C-s> <Esc>:w<CR><Ins>
+
+" find
+noremap <C-f> /
+inoremap <C-f> <Esc>/
+
+" goto line
+noremap <C-g> :
+inoremap <C-g> <Esc>:
+
+" delete line
+noremap <C-d> dd
+inoremap <C-d> <Esc>dd<Ins>
+
+" find next
+noremap <F3> n
+inoremap <F3> <Esc>n
+
+" reload
+noremap <F5> :edit!<CR>
+inoremap <F5> <Esc>:edit!<CR><Ins>
+
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+
+
+" incremental search
+set incsearch
+
+
+" to avoid going one page down
+vnoremap <S-Down>  <Down>
+vnoremap <S-Up>  <Up>
+
+"Edit mapping (make cursor keys work like in Windows: <C-Left><C-Right>
+"Move to next word.
+nnoremap <C-Left> b
+inoremap <C-Left> <Esc>b<Ins>
+
+nnoremap <C-Right> w
+" two w because <Esc> will go one char back
+inoremap <C-Right> <Esc>ww<Ins>
+
+nnoremap <S-Left> v<Left>
+inoremap <S-Left> <Esc>v<Left>
+
+nnoremap <S-Home> v<Home>
+inoremap <S-Home> <Esc>v<Home>
+
+nnoremap <S-Right> v<Right>
+inoremap <S-Right> <Esc>v<Right>
+
+nnoremap <S-End> v<End>
+inoremap <S-End> <Esc>v<End>
+
+" copy line to clipboard
+" "*yy doesnt work yet as  echo has('clipboard') is 0 now
+noremap <C-l> yy
+inoremap <C-l> <Esc>yy<Ins>
+
+" copy selection to clipboard
+vmap <C-c> y
+
+

@@ -1,0 +1,52 @@
+# autocomplete case insensitive
+set autolist = ambiguous
+set complete = enhance
+
+# use 'ctrl -' to replace 'ctrl s' as terminal stop
+stty stop \^_
+# [ Unix general ]
+#alias fnd 'find . -name $1'
+alias fnd 'find . -iname $1'
+alias fndf 'find `pwd` -iname $1'
+# find files starting/ending/in middle with given pattern
+alias fnds "fnd \!:1'*'"
+alias fnde "fnd '*'\!:1"
+alias fndm "fnd '*'\!:1'*'"
+
+# find files starting/ending/in middle with given pattern which returns result as full path
+alias fndsf "fndf \!:1'*'"
+alias fndef "fndf '*'\!:1"
+alias fndmf "fndf '*'\!:1'*'"
+
+# gets dirname
+# usage :   fnd  file |  xd
+alias xd 'xargs -n1 dirname'
+
+# usage :  fnd file | xg pattern
+alias xg 'xargs grep -i'
+
+alias psg 'ps -ef | grep -i $1'
+alias gi  'grep -i'
+
+alias jarg 'jar tvf \!:1 |  grep -i \!:2'
+alias jarx 'jar -xvf $*'
+alias jart  'jar tvf'
+
+alias se 'setenv $*'  
+alias cls 'clear'  
+alias kt  'kate'
+alias gv  '/usr/X11R6/bin/gvim'
+
+# ll defaults to date based sorting also
+alias ll 'ls -lt'
+alias lsa 'ls -a'
+
+# to delete hidden files also
+alias rmrf 'rm -rf * .*'
+
+# cd to parent
+alias cdd  'cd ..'
+
+alias kl9   'kill -9'
+
+

@@ -1,0 +1,8 @@
+#!/bin/bash
+xhost +
+vncconfig -iconic &
+/usr/bin/X11/xrdb $HOME/.Xdefaults
+/usr/bin/X11/xsetroot -solid grey
+#xmodmap -e 'keysym Alt_L = Meta_L' -e 'keysym Alt_R = Meta_R'
+#/opt/fvwm/bin/fvwm2 
+startkde &
