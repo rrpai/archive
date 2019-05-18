@@ -1,0 +1,196 @@
+Orientation
+- we can lock orientation in manifest file for that activity
+- when orientation changes the activity is destroyed and a new one created (am not seeing this happening in practice)
+
+
+Passing Values between Activities using Extras
+- Navigation to other activities happen using Intents  and startActivity
+- We can start other activities for a result using  startActivityForResult
+- Here in the intent we can pass data using Extras :  intent.putExtra(...)
+
+- In navigated activity we can get the intent and get the passed in values
+- We pass the result code (ok/cancel)  
+- We  pass result codes in intents
+
+- In main activity we can get the result intent and get the return values.
+
+
+Shared Preferences
+- we can store preferences using SharedPreferences Editor object 
+- read using SharedPreferences object
+
+ListView
+-  In list view insert another layout which is going to be the individual item 
+- Write a adapter which will return a view for that item
+  -  inflate the view for the item
+  -  set  UI elements in the view and return 
+-  associate the list view with the adapter
+
+
+AsyncTask<Input ..., Progress, Result>
+   - this is used to extend and spawn another thread
+   -  3 generic params  
+     Type of  input
+     Type  of data  passed for progress update
+     Type of  result
+
+ onPreExecute()    -  executed in main  ui thread
+ onDoInBackground()    -  executed in background thread
+      ->  publishProgress(progressData)     -   message  scheduled in main UI  event queue
+ onProgressUpdate(progressData)   -  executed in main  ui thread
+     -  called using data  from  publishProgress
+ onPostExecute()    -  executed in main  ui thread
+Webview
+  https://github.com/uberspot/2048-android
+   https://github.com/gabrielecirulli/2048
+
+- this is just a webview for 2048
+- just loads the saved game html in a webview with
+     javascript enabled
+     web database enabled
+     web database path specified (for webview to store state)
+     dom storage enabled 
+    
+  
+
+Android - Adam Porter
+
+Sensors
+we can register listeners for sensor events produced by accelerometer , magnetic field etc
+Accelerometer - acceleration in (x,y,z) directions. Y is ‘g’ the earth’s gravitational field
+Low pass filter - smoothen out noise and minor variations and giving more emphasis on constant values . Eg ‘g’.   Useful in a levelling device used by carpenter 
+Filtered value = val * alpha + g * (1 - alpha)
+alpha = 0.2
+High pass filter - smoothen out constant values. Eg ‘g’.  Give more emphasis on variations
+Filtered value = val - g
+
+Compass example
+onStart / onResume -  register sensor event listeners
+onPause - unregister sensor event listeners
+The view is a custom view eg CompassView
+We add the  CompassView to layout programmatically in onStart
+After event listeners are handled and orientation determined we invalidate the custom view :  compassView.invalidate()
+This causes the onDraw() of custom view to be called . Here we draw how our view looks like on the canvas
+In this case we rotate the canvas and draw the arrow
+
+Maps
+Providers -  Cellular Network, GPS , Other
+They are  a trade off between accuracy , speed, cost (battery) etc
+Need google play services 2.0 ,  API key
+Maps are drawn in google map fragment
+Data Management
+
+Shared preferences - small amount of data
+Internal Storage - small  to medium amounts of data
+External Storage - medium to large amounts of data
+Sql lite Db - structured data
+
+Shared Preferences
+basically a map
+use SharedPreferences.Editor to edit and commit data
+Shared Preferences fragment provides UI to edit preferences
+
+Internal Storage
+openFileInputStream/openFileOutputStream to get handles 
+
+External Storage
+Environment.get  method to know the state of external storage 
+exists, readable, writeable
+getCacheDir/getExternalCacheDir to get temporary cache dirs
+
+Sql Lite DB
+ACID - Atomic, Consistent, Isolation, Durability
+subclass SqlLiteDbHelper to create/delete
+SimpleCursorAdapter to display results in a list
+Use adb to open a session into emulator and sqllite can be used to see contents of db
+
+
+Content Providers
+share data between applications 
+eg : contacts , web history, bookmarks  
+
+Services
+runs even after activity which started it is closed
+eg cloud data synch , music player 
+android can kill it if it needs resources
+if it is a foreground service it will not be killed
+clients can also bind to a running service to call any APIs in the service
+eg Network service, power service , layout inflater service etc are standard services available via Context class
+Developer can write a service which can service clients binding and calls sequentially , concurrently (AIDL language)
+
+Android Platform
+Stack : Linux kernel , Dalvik VM ,  Libraries (Open GL ) , Programming framework , Apps
+Debugging tools : DDMS, ADB,  UI hierarchy viewer , Telnet into emulator
+Components
+Activities
+Broadcast receivers - based on publish/subscribe
+Services
+Notifications
+
+
+Activity 
+onCreate
+onStart  : visible but cannot receive UI events
+onResume - start receiving UI event   (state from onStart / onPause)
+onPause -  partially visible but cannot receive UI events  (eg a dialog comes on top)
+onStop - hidden
+onRestart - from stop to start state
+onDestroy 
+
+onPause / onResume / onStop - long running  states
+Other states are transient , ie  android will immediately transition from that to next state
+
+Permissions
+declares user permission needed to access certain services like network etc
+
+Intents
+a data structure bag passed to start activities etc
+
+User interface classes
+layout classes  : frame layout, linear layout, relative layout
+UI classes  - button , text etc
+View groups - date picker , clock
+View adapters  - list adapter 
+
+ListActivity
+android.app.ListActivity
+standard activity class which can be used to quickly show a list
+setListAdapter()  sets the adapter
+
+Notifications
+add notification to notification bar
+draw down notification drawer to see list of notifications
+
+Broadcast receiver
+register for events like sms / calls arriving and respond
+
+Threads
+
+AsyncTask 
+pre execute 
+run in background
+publish messages which can be used to show in main ui thread
+post execute
+
+Runnables
+Runnables are queued in main ui thread
+Normal Thread can be started to run in background thread  and
+View.post  can use  a Runnable to run in UI thread
+
+Handlers
+messages are queued in main ui thread
+Normal Thread can be started to run in background thread  and publish messages
+handler can look at messages  and their ID to process in main ui thread
+
+Networking
+JSON : JavaScript Object Notation
+Maps 
+key : value
+Arrays
+name : [element1, element2 ….]
+Some android helper classes for networking
+AndroidHttpClient.execute()  : makes a http call
+ResponseHandler<T> ,BasicResponseHandler
+These handle response, parse string and return the result as  a Type T  etc
+eg T can be  List<Contacts>
+JSONTokener : Tokenizes a response string
