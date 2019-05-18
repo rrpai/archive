@@ -1,0 +1,62 @@
+Jquery
+
+
+
+http://www.newthinktank.com/2015/10/learn-jquery-one-video/
+
+
+https://developers.google.com/speed/libraries/
+
+
+min means minified : bfuscated, reduced in size
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+
+http://jquery.com/
+https://jqueryui.com/
+http://plugins.jquery.com/
+
+https://en.wikipedia.org/wiki/JQuery
+
+# very good cookbook
+http://www.slideshare.net/mikehostetler/cooking-with-jquery
+
+http://www.slideshare.net/1Marc/jquery-essentials/
+http://www.slideshare.net/simon/unobtrusive-javascript-with-jquery/
+
+
+
+
+A dom manipulation language
+Helps in separating html from JS 
+All JS code can be in separate .js file
+Code compatible across browsers
+
+
+Philosophy 
+Query to get dom elements 
+Do something with it
+jQuery is the main object. 
+For brevity ‘$’ is used
+Most of commands return jquery objects themselves and are chainable
+$(..).$(..)...
+Common way of using is to trigger code when html is fully loaded
+
+$(“document”).ready( function(){
+});
+
+$(“#id”)  - query by id
+$(“tag”)  - query by tag
+$(“.class”)  - query by css class
+
+
+Events
+Animations
+Ajax 
+Extensible - many plugins are available
+
+JQueryUI is a related library
+This has many UI widgets , animations, effects etc
+Has a plugin repository 
