@@ -1,0 +1,145 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+    {
+        "key": "ctrl+t",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+t",
+        "command": "workbench.action.quickOpenNavigateNextInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-workbench.action.quickOpenNavigateNextInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
+    },
+    {
+        "key": "f3",
+        "command": "editor.action.goToDeclaration",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+    },
+    {
+        "key": "f12",
+        "command": "-editor.action.goToDeclaration",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+    },
+    {
+        "key": "f4",
+        "command": "editor.action.referenceSearch.trigger",
+        "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    },
+    {
+        "key": "shift+f12",
+        "command": "-editor.action.referenceSearch.trigger",
+        "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    },
+    {
+        "key": "alt+1",
+        "command": "workbench.view.explorer"
+    },
+    {
+        "key": "ctrl+shift+e",
+        "command": "-workbench.view.explorer"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "editor.action.smartSelect.grow",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+w",
+        "command": "-editor.action.smartSelect.grow",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+u",
+        "command": "editor.action.smartSelect.shrink",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+w",
+        "command": "-editor.action.smartSelect.shrink",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+9",
+        "command": "workbench.view.scm",
+        "when": "editorFocus"
+    },
+    {
+        "key": "alt+9",
+        "command": "-workbench.view.scm",
+        "when": "editorFocus"
+    },
+    {
+        "key": "alt+9",
+        "command": "workbench.view.scm",
+        "when": "gitlens:enabled && gitlens:keymap == 'chorded'"
+    },
+    {
+        "key": "ctrl+shift+g g",
+        "command": "-workbench.view.scm",
+        "when": "gitlens:enabled && gitlens:keymap == 'chorded'"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+k",
+        "command": "-editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "-editor.action.addSelectionToNextFindMatch",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "-editor.action.copyLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+p",
+        "command": "-workbench.action.showCommands"
+    },
+    {
+        "key": "ctrl+alt+g",
+        "command": "editor.action.formatSelection",
+        "when": "editorHasDocumentFormattingProvider && editorHasSelection && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+alt+l",
+        "command": "-editor.action.formatSelection",
+        "when": "editorHasDocumentFormattingProvider && editorHasSelection && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.showCommands"
+    },
+    {
+        "key": "ctrl+shift+a",
+        "command": "-workbench.action.showCommands"
+    },
+    {
+        "key": "ctrl+o",
+        "command": "-workbench.action.files.openFile"
+    },
+    {
+        "key": "ctrl+o",
+        "command": "workbench.action.gotoSymbol",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+f12",
+        "command": "-workbench.action.gotoSymbol",
+        "when": "editorTextFocus"
+    }
+]
