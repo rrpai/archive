@@ -1,0 +1,27 @@
+Links
+https://kubernetes.io
+
+[ Concepts ]
+
+- creates a desired state in the cluster
+
+Deployment
+- the desired state
+- can have multiple types of pods 
+- pods can be scaled
+
+Pod
+- runs 1 container or containers of different types
+
+Service
+- describes how the communication between
+Pods - pod to pod
+Cluster IP - to load balanced pods
+NodePort - External world to deployment
+
+-----------------------------------------------------------------------------------------------
+- create a deployment
+kubectl create -f  deployment.yaml
+
+- update a deployment
+kubectl apply -f   deployment.yaml
