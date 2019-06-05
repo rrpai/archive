@@ -25,3 +25,8 @@ kubectl create -f  deployment.yaml
 
 - update a deployment
 kubectl apply -f   deployment.yaml
+-----------------------------------------------------------------------------------------------
+Links
+
+Presentation
+https://docs.google.com/presentation/d/1zrfVlE5r61ZNQrmXKx5gJmBcXnoa_WerHEnTxu5SMco/edit#slide=id.g3987326444_0_0
