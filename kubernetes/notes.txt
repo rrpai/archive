@@ -19,6 +19,9 @@ Pods - pod to pod
 Cluster IP - to load balanced pods
 NodePort - External world to deployment
 
+Ingress 
+- routing from internet/outside world to services
+/foo ->  myservice1
 -----------------------------------------------------------------------------------------------
 - create a deployment
 kubectl create -f  deployment.yaml
@@ -30,3 +33,42 @@ Links
 
 Presentation
 https://docs.google.com/presentation/d/1zrfVlE5r61ZNQrmXKx5gJmBcXnoa_WerHEnTxu5SMco/edit#slide=id.g3987326444_0_0
+-----------------------------------------------------------------------------------------------
+[ Helm ]
+
+Used to deploy/upgrade/remove a full app  
+This is similar to apt/yum in linux 
+Charts are similar to rpm files
+
+Helm client in client side
+Tiller in server side
+
+Chart.yaml - describes the chart
+values.yaml - has replacement values
+requirements.yaml - has dependencies on other charts
+
+The template values are written like
+{{ .Values.myVar }}
+
+helm init
+
+- create
+helm create hello-world
+
+- linting / verifying syntax of chart
+helm lint ./hello-world
+
+- show what would be the files look like without actually running it
+helm template ./hello-world
+
+- install
+helm install --name hello-world ./hello-world
+
+- get charts 
+helm get
+
+- upgrade if the chart has changed
+helm upgrade hello-world ./hello-world
+
+- delete
+helm delete --purge hello-world
